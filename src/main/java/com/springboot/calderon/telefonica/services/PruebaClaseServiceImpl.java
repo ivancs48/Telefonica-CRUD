@@ -40,12 +40,18 @@ public class PruebaClaseServiceImpl implements PruebaClaseService {
 
 	public PruebaClaseDTO actualiza(PruebaClaseDTO pruebaClaseDto) {
 		Optional<PruebaClase> original = repository.findById(pruebaClaseDto.getEid());
-		PruebaClaseDTO pruebaClaseDTO = new PruebaClaseDTO();
-		if (original.isPresent()) {
-			PruebaClase pruebaClase = repository.save(original.get());
-			pruebaClaseDTO = new PruebaClaseDTO(pruebaClase);
-		}
-		return pruebaClaseDTO;
+	    PruebaClaseDTO pruebaClaseDTO = new PruebaClaseDTO();
+	    if (original.isPresent()) {
+	        PruebaClase pruebaClase = original.get();
+	        pruebaClase.setEid(pruebaClaseDto.getEid());
+	        pruebaClase.setNombre(pruebaClaseDto.getNombre());
+	        pruebaClase.setAula(pruebaClaseDto.getAula());
+	        pruebaClase.setHorario(pruebaClaseDto.getHorario());
+
+	        PruebaClase updatedPruebaClase = repository.save(pruebaClase);
+	        pruebaClaseDTO = new PruebaClaseDTO(updatedPruebaClase);
+	    }
+	    return pruebaClaseDTO;
 	}
 
 	public void deleteById(int eid) {
