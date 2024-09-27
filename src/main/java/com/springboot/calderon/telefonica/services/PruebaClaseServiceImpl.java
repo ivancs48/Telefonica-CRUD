@@ -17,12 +17,14 @@ public class PruebaClaseServiceImpl implements PruebaClaseService {
 	@Autowired
 	private PruebaClaseRepository repository;
 
+	@Override
 	public List<PruebaClaseDTO> findAll() {
 		List<PruebaClaseDTO> listado = repository.findAll().stream().map(PruebaClaseDTO::new)
 				.collect(Collectors.toList());
 		return listado;
 	}
 
+	@Override
 	public PruebaClaseDTO findById(int eid) {
 		Optional<PruebaClase> pruebaClase = repository.findById(eid);
 		PruebaClaseDTO pruebaClaseDTO = new PruebaClaseDTO();
@@ -32,12 +34,14 @@ public class PruebaClaseServiceImpl implements PruebaClaseService {
 		return pruebaClaseDTO;
 	}
 
+	@Override
 	public PruebaClaseDTO save(PruebaClaseDTO pruebaClaseDto) {
 		PruebaClase pruebaClase = repository.save(PruebaClaseDTO.pruebaClase2PruebaClaseDTO(pruebaClaseDto));
 		PruebaClaseDTO pruebaClaseDTO = new PruebaClaseDTO(pruebaClase);
 		return pruebaClaseDTO;
 	}
 
+	@Override
 	public PruebaClaseDTO actualiza(PruebaClaseDTO pruebaClaseDto) {
 		Optional<PruebaClase> original = repository.findById(pruebaClaseDto.getEid());
 	    PruebaClaseDTO pruebaClaseDTO = new PruebaClaseDTO();
@@ -54,6 +58,7 @@ public class PruebaClaseServiceImpl implements PruebaClaseService {
 	    return pruebaClaseDTO;
 	}
 
+	@Override
 	public void deleteById(int eid) {
 		repository.deleteById(eid);
 	}
