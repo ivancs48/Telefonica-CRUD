@@ -1,6 +1,6 @@
 package com.springboot.calderon.telefonica.modelo;
 
-import jakarta.validation.constraints.NotNull;
+//import jakarta.validation.constraints.NotNull;
 
 public class PruebaInscripcionDTO {
 
